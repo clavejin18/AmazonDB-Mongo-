@@ -1,0 +1,5 @@
+# Don't commit the following items
+.DS_Store
+.env
+node_modules
+
