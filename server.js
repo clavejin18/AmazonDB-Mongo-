@@ -11,7 +11,7 @@ app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // Make public a static folder
-app.use(express.static('public'));
+app.use('/',express.static('public'));
 
 // Database configuration
 var databaseUrl = 'products';
@@ -52,8 +52,8 @@ app.get('/sell', function (request, response) {
 app.post('/submit', function (request, response) {
     console.log(request.body);
     // Inserting to proper collection
-    if (request.body === "new") {
-        db.new.insert(request.body, function (error, saved) {
+    if (request.body.condition === "new") {
+        db.new.insert(request.body.condition, function (error, saved) {
             if (error) {
                 console.log(error);
             }
@@ -62,7 +62,7 @@ app.post('/submit', function (request, response) {
             }
         });
     }
-    else if (request.body === "used") {
+    else if (request.body.condition === "used") {
         db.used.insert(request.body, function (error, saved) {
             if (error) {
                 console.log(error);
